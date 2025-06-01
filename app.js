@@ -1,24 +1,27 @@
 const express = require('express');
+const { movies } = require('./Database/connection');
 const app = express();
 
 require('./Database/connection');
 
-app.get('/movie', (req, res) => {
+app.get('/movies', async (req, res) => {
+  const datas = await movies.findAll();
+  res.json({
+    message: 'Successfully updated',
+    datas,
+  });
+});
+app.post('/movies', (req, res) => {
   res.json({
     message: 'Successfully updated',
   });
 });
-app.post('/movie', (req, res) => {
-  res.json({
-    message: 'Successfully updated',
-  });
-});
-app.delete('/movie/:id', (req, res) => {
+app.delete('/movies/:id', (req, res) => {
   res.json({
     message: 'Successfully  deleted',
   });
 });
-app.patch('/movie/:id', (req, res) => {
+app.patch('/movies/:id', (req, res) => {
   res.json({
     message: 'Successfully updated edited',
   });
