@@ -3,7 +3,7 @@ const { movies } = require('./Database/connection');
 const app = express();
 
 require('./Database/connection');
-
+app.use(express.json());
 app.get('/movies', async (req, res) => {
   const datas = await movies.findAll();
   res.json({
@@ -11,7 +11,25 @@ app.get('/movies', async (req, res) => {
     datas,
   });
 });
-app.post('/movies', (req, res) => {
+app.post('/movies', async (req, res) => {
+  const {
+    // yo chai value hai mathi postman ma aako  value ho
+    movieTitle,
+    movieGenre,
+    movieDescription,
+    movieReleaseDate,
+    movieDuration,
+    movieLanguage,
+  } = req.body;
+  await movies.create({
+    // coloum = value
+    movieTitle,
+    movieGenre,
+    movieDescription,
+    movieReleaseDate,
+    movieDuration,
+    movieLanguage,
+  });
   res.json({
     message: 'Successfully updated',
   });
