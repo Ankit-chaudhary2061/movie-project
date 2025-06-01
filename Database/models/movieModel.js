@@ -14,15 +14,15 @@ const movieModel = (sequelize, DataTypes) => {
     },
     movieReleaseDate: {
       type: DataTypes.DATEONLY, // More appropriate than STRING
-      allowNull: true,
+      allowNull: false,
     },
     movieDuration: {
       type: DataTypes.INTEGER, // Duration in minutes
-      allowNull: true,
+      allowNull: false,
     },
     movieLanguage: {
       type: DataTypes.STRING, // More appropriate than STRING
-      allowNull: true,
+      allowNull: false,
     },
   });
   return movie;
