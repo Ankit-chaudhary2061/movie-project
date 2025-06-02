@@ -18,7 +18,7 @@ const movieModel = (sequelize, DataTypes) => {
     },
     movieDuration: {
       type: DataTypes.INTEGER, // Duration in minutes
-      allowNull: false,
+      allowNull: true,
     },
     movieLanguage: {
       type: DataTypes.STRING, // More appropriate than STRING
