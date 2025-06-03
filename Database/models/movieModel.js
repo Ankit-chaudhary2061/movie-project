@@ -9,22 +9,39 @@ const movieModel = (sequelize, DataTypes) => {
       allowNull: false,
     },
     movieDescription: {
-      type: DataTypes.TEXT, // Better for longer descriptions
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     movieReleaseDate: {
-      type: DataTypes.DATEONLY, // More appropriate than STRING
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     movieDuration: {
-      type: DataTypes.INTEGER, // Duration in minutes
+      type: DataTypes.STRING,
       allowNull: true,
     },
     movieLanguage: {
-      type: DataTypes.STRING, // More appropriate than STRING
+      type: DataTypes.STRING,
       allowNull: false,
     },
+    movieReviewText: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: '', // or some default text like 'No review yet'
+    },
+
+    movieRating: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1, // or some default rating you want, e.g., 3
+      validate: {
+        min: 1,
+        max: 5,
+      },
+    },
   });
+
   return movie;
 };
+
 module.exports = movieModel;

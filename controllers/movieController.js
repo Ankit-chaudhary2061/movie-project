@@ -15,17 +15,19 @@ exports.addMovies = async (req, res) => {
     movieReleaseDate,
     movieDuration,
     movieLanguage,
+    movieReviewText,
+    movieRating,
   } = req.body;
-  // yo mathi ko chai post man ma ko requst body ma hold garyra  rakhaya ko
 
   await movies.create({
-    // yesma ma chai twyeo create garna lai used hunca like left side ma chai coloum ho ani right side ko chai value ho like post man ma set vako wala vakue if value ra colum ko name same xa vanya double value rakhnu pardain eutai ma rakhya vayao
     movieTitle,
     movieGenre,
     movieDescription,
     movieReleaseDate,
     movieDuration,
     movieLanguage,
+    movieReviewText,
+    movieRating,
   });
 
   res.json({ message: 'Movie added successfully.' });
@@ -50,6 +52,8 @@ exports.editMovie = async (req, res) => {
     movieReleaseDate,
     movieDuration,
     movieLanguage,
+    movieReviewText,
+    movieRating,
   } = req.body;
 
   await movies.update(
@@ -60,6 +64,8 @@ exports.editMovie = async (req, res) => {
       movieReleaseDate,
       movieDuration,
       movieLanguage,
+      movieReviewText,
+      movieRating,
     },
     {
       where: { id },

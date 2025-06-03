@@ -22,7 +22,13 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.movies = movieModel(sequelize, DataTypes);
 // migrate code
-sequelize.sync({ alert: false }).then(() => {
-  console.log('migrate vayo hai ta ');
-});
+sequelize
+  .sync({ alter: false })
+  .then(() => {
+    console.log('Database synchronized (alter applied)');
+  })
+  .catch((err) => {
+    console.error('Error during DB sync:', err);
+  });
+
 module.exports = db;
