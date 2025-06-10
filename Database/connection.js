@@ -1,11 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const movieModel = require('./models/movieModel');
-// Initialize Sequelize
+const bookModel = require('./models/bookModel'); // <-- Make sure folder is 'models', not 'model'
+
 const sequelize = new Sequelize(
   'postgresql://postgres.rsgxksinuesquzmwolfj:abacodehanu@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres'
 );
 
-// Test the connection
 sequelize
   .authenticate()
   .then(() => {
@@ -15,20 +14,18 @@ sequelize
     console.log('❌ Unable to connect to the database:', err);
   });
 
-// Define db object
 const db = {};
-
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.movies = movieModel(sequelize, DataTypes);
-// migrate code
+db.books = bookModel(sequelize, DataTypes);
+
 sequelize
   .sync({ alter: false })
   .then(() => {
-    console.log('Database synchronized (alter applied)');
+    console.log('✅ Database synchronized');
   })
   .catch((err) => {
-    console.error('Error during DB sync:', err);
+    console.error('❌ Error during DB sync:', err);
   });
 
 module.exports = db;
